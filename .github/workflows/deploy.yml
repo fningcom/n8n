@@ -1,0 +1,30 @@
+name: Deploy to Timeweb
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Prepare docker-compose.yml
+        run: |
+          cat docker-compose.tpl.yml | envsubst > docker-compose.yml
+
+        env:
+          N8N_BASIC_AUTH_USER: ${{ secrets.N8N_BASIC_AUTH_USER }}
+          N8N_BASIC_AUTH_PASSWORD: ${{ secrets.N8N_BASIC_AUTH_PASSWORD }}
+          N8N_HOST: ${{ secrets.N8N_HOST }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_TUNNEL_URL: ${{ secrets.WEBHOOK_TUNNEL_URL }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+
+      - name: Push to Timeweb (если нужно)
+        run: echo "Добавь сюда деплой-команду или Timeweb CI/CD хук"
