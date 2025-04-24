@@ -19,4 +19,4 @@ services:
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     volumes:
-      - /data/n8n:/home/node/.n8n
+      - n8n:/home/node/.n8n
