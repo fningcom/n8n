@@ -17,4 +17,4 @@ services:
       - WEBHOOK_TUNNEL_URL=https://n8n.xminer.ru
       - N8N_SECURE_COOKIE=true
     volumes:
-      - n8n:/home/node/.n8n
+      - ./:/home/node/.n8n
